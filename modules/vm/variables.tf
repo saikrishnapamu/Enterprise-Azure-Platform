@@ -31,7 +31,7 @@ variable "public_ip_enabled" {
 }
 
 variable "availability_zone" {
-  type = string
+  type    = string
   default = null
 }
 
@@ -43,8 +43,8 @@ variable "tags" {
 variable "image" {
   type = object({
     publisher = string
-    offer = string
-    sku = string
-    version = string
+    offer     = string
+    sku       = string
+    version   = string
   })
 }
