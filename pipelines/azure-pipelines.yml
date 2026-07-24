@@ -1,0 +1,13 @@
+trigger: 
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+
+steps:
+  - checkout: self
+
+  - script: |
+      terraform version
+    displayName: Terraform Version
