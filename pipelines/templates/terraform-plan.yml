@@ -27,7 +27,7 @@ steps:
 
       cd ${{ parameters.workingDirectory }}
 
-      terraform plan -out=tfplan
+      terraform plan -input=false -out=tfplan
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Terraform Plan'
