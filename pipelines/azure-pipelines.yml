@@ -5,9 +5,13 @@ pool:
   vmImage: ubuntu-latest
 
 
+
 variables: 
-   workingDirectory: environments/dev
-   serviceConnection: terraform-dev
+- group: terraform-dev
+- name: workingDirectory
+  value: environments/dev
+- name: serviceConnection 
+  value: terraform-dev
 
 
 stages:

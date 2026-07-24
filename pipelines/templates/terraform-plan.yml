@@ -25,6 +25,8 @@ steps:
       export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
       export ARM_OIDC_TOKEN=$idToken
 
+      export TF_VAR_ssh_public_key="$SSH_PUBLIC_KEY"
+
       cd ${{ parameters.workingDirectory }}
 
       terraform plan -input=false -out=tfplan

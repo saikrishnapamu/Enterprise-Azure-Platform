@@ -99,7 +99,7 @@ vm_size = "Standard_B1s"
 
 admin_username = "azureuser"
 
-ssh_public_key_path = "~/.ssh/id_ed25519.pub"
+#ssh_public_key_path = "~/.ssh/id_ed25519.pub"
 
 public_ip_enabled = true
 

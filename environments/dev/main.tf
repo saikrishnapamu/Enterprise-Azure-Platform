@@ -61,7 +61,7 @@ module "vm" {
 
   admin_username = var.admin_username
 
-  ssh_public_key = file(pathexpand(var.ssh_public_key_path))
+  ssh_public_key = var.ssh_public_key
 
   public_ip_enabled = var.public_ip_enabled
 
