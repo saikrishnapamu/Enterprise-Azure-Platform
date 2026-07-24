@@ -17,7 +17,7 @@ steps:
 
   - template: templates/terraform-init.yml
     parameters:
-      serviceConnection: ${serviceConnection}
+      serviceConnection: 'terraform-dev'
       workingDirectory: ${workingDirectory}
 
   - template: templates/terraform-fmt.yml
