@@ -19,6 +19,15 @@ steps:
       terraform version
     displayName: Terraform Version
 
+  - task: AzureCLI@2
+    displayName: 'Azure Login'
+    inputs:
+      azureSubscription: 'Sai'
+      ScriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az account show
+
   - script: |
       cd environments/dev
       terraform init
