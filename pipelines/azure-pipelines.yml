@@ -10,25 +10,33 @@ variables:
    serviceConnection: terraform-dev
 
 
-steps:
-  - checkout: self
+stages:
+  - stage: Validate
+    displayName: Terraform Validation
 
-  - template: templates/install-terraform.yml
+    jobs:
+      - job: Validate
+        displayName: Terraform Checks
 
-  - template: templates/terraform-init.yml
-    parameters:
-      serviceConnection: 'terraform-dev'
-      workingDirectory: ${workingDirectory}
-
-  - template: templates/terraform-fmt.yml
-    parameters:
-      workingDirectory: ${workingDirectory}
-
-  - template: templates/terraform-validate.yml
-    parameters:
-      workingDirectory: ${workingDirectory}
-
-  - template: templates/terraform-plan.yml
-    parameters:
-      workingDirectory: ${workingDirectory}
-      serviceConnection: 'terraform-dev'
+        steps:
+          - checkout: self
+        
+          - template: templates/install-terraform.yml
+        
+          - template: templates/terraform-init.yml
+            parameters:
+              serviceConnection: 'terraform-dev'
+              workingDirectory: 'environments/dev'
+        
+          - template: templates/terraform-fmt.yml
+            parameters:
+              workingDirectory: 'environments/dev'
+        
+          - template: templates/terraform-validate.yml
+            parameters:
+              workingDirectory: 'environments/dev'
+        
+          - template: templates/terraform-plan.yml
+            parameters:
+              workingDirectory: 'environments/dev'
+              serviceConnection: 'terraform-dev'
