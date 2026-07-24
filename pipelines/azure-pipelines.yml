@@ -18,3 +18,8 @@ steps:
   - script: |
       terraform version
     displayName: Terraform Version
+
+  - script: |
+      cd environments/dev
+      terraform init
+    displayName: Terraform Init
