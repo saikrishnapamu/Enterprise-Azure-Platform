@@ -20,15 +20,20 @@ steps:
     displayName: Terraform Version
 
   - task: AzureCLI@2
-    displayName: 'Azure Login'
+    displayName: 'Verify Azure Login'
     inputs:
       azureSubscription: 'terraform-dev'
-      ScriptType: bash
+      scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
+        echo "===== Azure Version ====="
+        az version
+  
+        echo "===== Current Account ====="
         az account show
-
-  - script: |
-      cd environments/dev
-      terraform init
-    displayName: Terraform Init
+  
+        echo "===== Subscription ====="
+        az account list --output table
+  
+        echo "===== Access Token ====="
+        az account get-access-token --resource https://management.azure.com/ --query expiresOn
