@@ -27,3 +27,8 @@ steps:
   - template: templates/terraform-validate.yml
     parameters:
       workingDirectory: ${workingDirectory}
+
+  - template: templates/terraform-plan.yml
+    parameters:
+      workingDirectory: ${workingDirectory}
+      serviceConnection: 'terraform-dev'

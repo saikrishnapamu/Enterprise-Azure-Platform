@@ -1,0 +1,37 @@
+parameters:
+- name: workingDirectory
+  type: string
+
+- name: serviceConnection
+  type: string
+
+
+
+steps:
+
+- task: AzureCLI@2
+  displayName: Terraform Plan
+
+  inputs:
+    azureSubscription: ${{ parameters.serviceConnection }}
+    scriptType: bash
+    scriptLocation: inlineScript
+    addSpnToEnvironment: true
+
+    inlineScript: |
+      export ARM_USE_OIDC=true
+      export ARM_CLIENT_ID=$servicePrincipalId
+      export ARM_TENANT_ID=$tenantId
+      export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+      export ARM_OIDC_TOKEN=$idToken
+
+      cd ${{ parameters.workingDirectory }}
+
+      terraform plan -out=tfplan
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Terraform Plan'
+
+  inputs:
+    targetPath: 'environments/dev/tfplan'
+    artifact: 'terraform-plan'
