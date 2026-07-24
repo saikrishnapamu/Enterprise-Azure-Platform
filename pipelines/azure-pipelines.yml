@@ -22,7 +22,7 @@ steps:
   - task: AzureCLI@2
     displayName: 'Azure Login'
     inputs:
-      azureSubscription: 'Sai'
+      azureSubscription: 'terraform-dev'
       ScriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
