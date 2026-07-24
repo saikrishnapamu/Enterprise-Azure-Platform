@@ -3,7 +3,7 @@
 *.tfstate
 *.tfstate.*
 crash.log
-*.tfvars
+#*.tfvars
 *.tfplan
 
 # IDE
