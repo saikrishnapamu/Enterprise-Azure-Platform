@@ -44,3 +44,30 @@ stages:
             parameters:
               workingDirectory: 'environments/dev'
               serviceConnection: 'terraform-dev'
+
+  - stage: Deploy
+    displayName: Deploy to Dev
+  
+    dependsOn: Validate
+  
+    jobs:
+  
+    - deployment: DeployDev
+  
+      environment: dev
+  
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+  
+            - download: current
+              artifact: terraform-plan
+  
+            - script: |
+                echo "Pipeline Workspace"
+                pwd
+  
+                echo "Workspace Contents"
+                find $(Pipeline.Workspace)
+              displayName: Inspect Artifact

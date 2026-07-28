@@ -1,0 +1,22 @@
+parameters:
+- name: serviceConnection
+  type: string
+
+- name: workingDirectory
+  type: string
+
+
+steps:
+
+- download: current
+  artifact: terraform-plan
+
+- script: |
+   echo "+++++++++++++Pipeline Workspace++++++++++++++++"
+   pwd
+
+
+   echo "=============Workspace Contents================"
+   find ${+Pipeline.Workspace}
+
+  displayName: "Inspect Downloded artifacts"
