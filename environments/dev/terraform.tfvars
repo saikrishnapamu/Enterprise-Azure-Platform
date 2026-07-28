@@ -95,7 +95,7 @@ nsgs = {
 
 vm_name = "backend-vm"
 
-vm_size = "Standard_B1s"
+vm_size = "Standard_D2s_v3"
 
 admin_username = "azureuser"
 
