@@ -1,0 +1,16 @@
+parameters:
+
+- name: workingDirectory
+  type: string
+
+steps:
+
+- script: |
+
+    terraform -chdir=${{ parameters.workingDirectory }} init -backend=false
+
+    tflint --init
+
+    tflint --chdir=${{ parameters.workingDirectory }}
+
+  displayName: Terraform Lint

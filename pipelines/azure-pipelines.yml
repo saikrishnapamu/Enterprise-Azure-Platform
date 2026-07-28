@@ -39,6 +39,12 @@ stages:
           - template: templates/terraform-validate.yml
             parameters:
               workingDirectory: 'environments/dev'
+
+          - template: templates/install-tflint.yml
+
+          - template: templates/tflint.yml
+            parameters:
+              workingDirectory: 'environments/dev'
         
           - template: templates/terraform-plan.yml
             parameters:
