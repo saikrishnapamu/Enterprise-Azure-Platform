@@ -11,12 +11,26 @@ steps:
 - download: current
   artifact: terraform-plan
 
-- script: |
-   echo "+++++++++++++Pipeline Workspace++++++++++++++++"
-   pwd
+- task: AzureCLI@2
+  displayName: Terraform Apply
 
+  inputs:
+    azureSubscription: ${{ parameters.serviceConnection }}
+    scriptType: bash
+    scriptLocation: inlineScript
+    addSpnToEnvironment: true
+    inlineScript: |
+      export ARM_USE_OIDC=true
+      export ARM_CLIENT_ID=$servicePrincipalId
+      export ARM_TENANT_ID=$tenantId
+      export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+      export ARM_OIDC_TOKEN=$idToken
 
-   echo "=============Workspace Contents================"
-   find ${+Pipeline.Workspace}
+      echo "Downloaded plan:"
+      ls -l "$(Pipeline.Workspace)/terraform-plan"
 
-  displayName: "Inspect Downloded artifacts"
+      terraform -chdir=${{ parameters.workingDirectory }} init
+
+      terraform -chdir=${{ parameters.workingDirectory }} apply \
+        -input=false \
+        "$(Pipeline.Workspace)/terraform-plan/tfplan"

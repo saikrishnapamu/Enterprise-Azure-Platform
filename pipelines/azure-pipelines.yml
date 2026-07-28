@@ -61,13 +61,11 @@ stages:
           deploy:
             steps:
   
-            - download: current
-              artifact: terraform-plan
-  
-            - script: |
-                echo "Pipeline Workspace"
-                pwd
-  
-                echo "Workspace Contents"
-                find $(Pipeline.Workspace)
-              displayName: Inspect Artifact
+            - checkout: self
+
+            - template: templates/install-terraform.yml
+
+            - template: templates/terraform-apply.yml
+              parameters:
+                serviceConnection: 'terraform-dev'
+                workingDirectory: 'environments/dev'
