@@ -97,3 +97,22 @@ variable "containers" {
 variable "key_vault_name" {
   type = string
 }
+
+
+
+variable "public_network_access_enabled" {
+  type = bool
+}
+
+
+variable "default_action" {
+  type = string
+}
+
+variable "bypass" {
+  type = string
+}
+
+variable "ip_rules" {
+  type = list(string)
+}

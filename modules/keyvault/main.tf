@@ -12,7 +12,14 @@ resource "azurerm_key_vault" "this" {
 
   rbac_authorization_enabled = true
 
-  public_network_access_enabled = true
+  public_network_access_enabled = var.public_network_access_enabled
 
   tags = var.tags
+
+  network_acls {
+  default_action = var.default_action
+  bypass         = var.bypass
+  ip_rules       = var.ip_rules
+}
+
 }

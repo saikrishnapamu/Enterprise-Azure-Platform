@@ -122,5 +122,12 @@ module "keyvault" {
 
   tenant_id = data.azurerm_client_config.current.tenant_id
 
+  public_network_access_enabled = var.public_network_access_enabled
+
   tags = var.tags
+
+  default_action = var.default_action
+  bypass         = var.bypass
+  ip_rules       = var.ip_rules
+
 }

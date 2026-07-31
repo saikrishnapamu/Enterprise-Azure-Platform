@@ -133,3 +133,11 @@ containers = {
 
 
 key_vault_name = "kv-customer-dev-sai-001"
+
+public_network_access_enabled = true
+
+default_action = "Allow"
+
+bypass = "AzureServices"
+
+ip_rules = []
