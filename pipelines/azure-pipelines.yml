@@ -45,6 +45,12 @@ stages:
           - template: templates/tflint.yml
             parameters:
               workingDirectory: 'environments/dev'
+
+          - template: templates/install-checkov.yml
+
+          - template: checkov.yml
+            parameters:
+              workingDirectory: 'environments/dev'
         
           - template: templates/terraform-plan.yml
             parameters:

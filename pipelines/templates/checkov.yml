@@ -1,0 +1,10 @@
+parameters:
+- name: workingDirectory
+  type: string
+
+
+steps:
+- script: |
+    checkov \
+    -d ${{ parameters.workingDirectory }}
+  displayName: Run Checkov

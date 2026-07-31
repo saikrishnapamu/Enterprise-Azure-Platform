@@ -1,0 +1,7 @@
+steps:
+
+- script: |
+    python3 -m pip install --upgrade pip
+    pip3 install checkov
+    checkov --version
+  displayName: Install Checkov
