@@ -57,27 +57,27 @@ stages:
               workingDirectory: 'environments/dev'
               serviceConnection: 'terraform-dev'
 
-  - stage: Deploy
-    displayName: Deploy to Dev
+#  - stage: Deploy
+#    displayName: Deploy to Dev
   
-    dependsOn: Validate
+#    dependsOn: Validate
   
-    jobs:
+#    jobs:
   
-    - deployment: DeployDev
+#    - deployment: DeployDev
   
-      environment: dev
+#      environment: dev
   
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-  
-            - checkout: self
+#      strategy:
+#       runOnce:
+#          deploy:
+#            steps:
+#  
+#            - checkout: self
+#
+#            - template: templates/install-terraform.yml
 
-            - template: templates/install-terraform.yml
-
-            - template: templates/terraform-apply.yml
-              parameters:
-                serviceConnection: 'terraform-dev'
-                workingDirectory: 'environments/dev'
+#            - template: templates/terraform-apply.yml
+#              parameters:
+#                serviceConnection: 'terraform-dev'
+#                workingDirectory: 'environments/dev'
