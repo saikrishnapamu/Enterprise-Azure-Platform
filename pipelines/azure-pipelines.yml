@@ -48,7 +48,7 @@ stages:
 
           - template: templates/install-checkov.yml
 
-          - template: checkov.yml
+          - template: templates/checkov.yml
             parameters:
               workingDirectory: 'environments/dev'
         
